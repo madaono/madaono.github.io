@@ -7,9 +7,9 @@ layout: default
     <div class="aside">
       <div class="info-card">
         <h1>MadaoNo</h1>
-        <p><img src="email.ico" alt="mail" width="22">464105353@qq.com</p>
-        <p><img src="tel.ico" alt="" width="22">18522501665</p>
-        <p><img src="addr.ico" alt="" width="22">北京昌平区</p>
+        <p><img src="email.ico" alt="mail" width="23"> : 464105353@qq.com</p>
+        <p><img src="tel.ico" alt="" width="22"> : 18522501665</p>
+        <p><img src="addr.ico" alt="" width="22"> : 北京昌平区</p>
       </div>
       <div id="particles-js"></div>
     </div>
