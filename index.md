@@ -6,12 +6,14 @@ layout: default
   <div class="index-wrapper">
     <div class="aside">
       <div class="info-card">
-        <h1>madaono</h1>
-        <a href="mailto:464105353@qq.com" target="_blank"><img src="./email.ico" alt="" width="25"/></a>
-
+        <h1>BeiYuu</h1>
+        <p><img src="./mail.ico" alt="mail">464105353@qq.com</p>
+        <p><img src="./tel.ico" alt="">18522501665</p>
+        <p><img src="./addr.ico" alt="">北京昌平</p>
       </div>
       <div id="particles-js"></div>
     </div>
+
 
     <div class="index-content">
       <ul class="artical-list">
