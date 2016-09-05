@@ -6,9 +6,9 @@ layout: default
   <div class="index-wrapper">
     <div class="aside">
       <div class="info-card">
-        <h1>BeiYuu</h1>
-        <p><img src="mail.ico" alt="mail">464105353@qq.com</p>
-        <p><img src="http://download.easyicon.net/ico/1147601/128/" alt="">18522501665</p>
+        <h1>MadaoNo</h1>
+        <p><img src="email.ico" alt="mail">464105353@qq.com</p>
+        <p><img src="tel.ico" alt="">18522501665</p>
         <p><img src="addr.ico" alt="">北京昌平区</p>
       </div>
       <div id="particles-js"></div>
