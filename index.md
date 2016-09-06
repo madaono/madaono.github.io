@@ -8,8 +8,6 @@ layout: default
       <div class="info-card">
         <h1>MadaoNo</h1>
         <p><img src="email.ico" alt="mail" width="22"> : 464105353@qq.com</p><br>
-        <p><img src="tel.ico" alt="" width="20"> : 18522501665</p><br>
-        <p><img src="addr.ico" alt="" width="20"> : 北京昌平区</p><br>
       </div>
       <div id="particles-js"></div>
     </div>
