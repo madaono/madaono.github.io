@@ -1,8 +1,7 @@
 ---
 layout: post
 title: JS中的闭包
-description: JS中的闭包就好比一把火麒麟
-Pages，闭包无处不在。
+description: 闭包如风，常伴吾身
 category: blog
 ---
 
