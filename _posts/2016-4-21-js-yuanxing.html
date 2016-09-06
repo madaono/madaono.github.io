@@ -1,0 +1,169 @@
+---
+layout:     post
+title:      原型与原型链
+category: blog
+description: 手持一条原型链，携手共建新家园
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p>在一开始解除JS时，就经常看到原型，一直认为原型就是对象的Prototype属性，像toString(),valueOf()等方法都是定义在Object.prototype上，至于原型链是什么鬼，希腊乃。</p>
+<h3 style="color:green">小栗子</h3>
+<pre>
+<code>
+console.log(Object instanceof Function); 
+console.log(Function instanceof Object); 
+console.log(Function instanceof Function); 
+console.log(Object instanceof Object); 
+</code>
+</pre>
+
+
+<p>以上四个输出的结果是什么呢？全他娘的是true，我刚看这部分的时候感觉</p>
+<img src="madaono.github.io/imgs/heirenwenhao.jpg" alt="heirenwenhao">
+<br>
+
+<p>先来个结论吧。</p>
+<p>
+JS本身没有类的概念（当然，ES6又有了），但是一直在模仿类，有一个机制叫做原型继承，然后要明白一切(引用类型)都是对象,数组,函数,对象都是对象；对象里面的一切都是属性包括方法),对象是若干属性的集合；对象又都是通过函数创建的, 函数也是对象。
+</p>
+
+<p>至于为啥，就得说说JS中的原型与原型链。</p>
+<br>
+<h3>原型与原型链</h3>
+
+ <p>首先每个函数都有一个prototype属性, 它默认指向一个对象(原型对象)</p>
+ <pre>
+ 	<code>
+  console.log(Date.prototype);
+  console.log(String.prototype);
+  function Fun() {
+    }
+  console.log(Fun.prototype);
+  console.log('-------------------');
+</code>
+ </pre>
+ 
+    <p>接着呢，原型对象中有一个属性constructor, 它指向函数对象</p>
+    <pre>
+    <code>
+    console.log(Date.prototype.constructor === Date);
+    console.log(Fun.prototype.constructor == Fun);
+    console.log('-------------------');
+    </code>
+    </pre>
+   
+   
+
+    <p>Object的原型</p>
+    <pre>
+    <code>
+    console.log(Object.prototype);
+    console.log(Object.prototype.__proto__);
+    console.log('-------------------');
+    </code>
+    </pre>
+    
+   
+
+ <p>然后给函数原型添加属性(一般都是方法)</p>
+ <pre>
+ 	<code>
+ 	 function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+        //给原型对象添加方法
+    Person.prototype.setName = function (name) {
+        this.name = name;
+    };
+    var p1 = new Person('夹克儿', 23);
+    p1.setName('Jack');
+    console.log(p1.name);
+        //可能给原型对象添加一般属性(用得少)
+    Person.prototype.tt = '我的天呐';
+    var p2 = new Person('肉丝儿', 22);
+    p2.tt = '你的天呐'; //p2有了自己的tt属性
+    console.log(p2.tt);
+    console.log(p1.tt);
+ </code>
+ </pre>
+ 
+   
+<br>
+  输出结果：<img src="madaono.github.io/imgs/yuanxing1.png" alt="输出结果图">
+
+
+<br>
+<p>小总结</p>
+<p>1. 每个函数function都有一个prototype，即显式原型.每个函数在定义时,自动拥有了此属性,且默认值为空object对象<br>
+2. 每个实例对象都有一个__proto__，可称为隐式原型
+    在实例对象在被创建时, 自动拥有了此属性, 且其值为构造函数的prototype的值<br>
+3. 隐式原型的值为其对应的显示原型的值</p>
+
+<pre>
+	<code>
+	//1. 每个函数function都有一个prototype，即显式原型
+        //构造函数
+    function Fun() {
+    }
+        //实例对象
+    var f = new Fun();
+    console.log(Fun.prototype); //显式原型
+
+    //2. 每个对象都有一个__proto__，可称为隐式原型
+    console.log(f.__proto__);
+
+    //3. 隐式原型的值为其对应的显示原型的值
+    console.log(Fun.prototype=== f.__proto__);
+
+        //通过显示原型给原型对象添加方法
+    Fun.prototype.test = function () {
+        console.log('test()');
+    };
+        //通过实例对象调用
+    f.test();
+
+</code>
+</pre>
+
+<br>
+输出结果：<img src="madaono.github.io/imgs/yuanxing2.png" alt="">
+
+    
+<p> 这里需要注意显示原型与隐式原型的区别。instanceof的判断就是靠着原型链来实现的，
+     Instanceof运算符的左边变量是一个对象，暂时称为A；右边变量是一个函数，暂时称为B
+     沿着A的__proto__这条线来找，同时沿着B的prototype这条线来找，
+     如果两条线能找到同一个引用，即同一个对象，那么就返回true。
+     如果找到终点还未重合，则返回false
+instanceof表示的就是一种继承关系，或者原型链的结构</p>
+
+   
+<p>这样再回到开始的问题</p>
+<pre>
+<code>
+console.log(Object instanceof Function);
+console.log(Object instanceof Object);
+console.log(Function instanceof Function);
+console.log(Function instanceof Object);
+</code>
+</pre>
+
+<p>利用instanceof的工作原理和隐式原型的值为其对应的显示原型的值这句话，对应着下图，就可以理解为何全是true了</p>
+
+<img src="madaono.github.io/imgs/原型.png" alt="yuanxinglian">
+
+
+</body>
+</html>
+
+
+
+
+
+
