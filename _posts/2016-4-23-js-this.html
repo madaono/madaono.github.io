@@ -1,0 +1,97 @@
+---
+layout:     post
+title:      this是个啥
+category: blog
+description: 这个this，正经么？
+---
+
+<body>
+<h2>执行上下文</h2>
+<p>JS中的this到底是什么，当时学习时看到的解释是： <br>
+    执行上下文对象（this） <br>
+    - 每一个函数在执行时，都会传入一个隐藏的参数，这个隐藏的参数指向的是当前函数执行的上下文对象。<br>
+    - 我们可以使用this关键字来引用上下文对象。<br>
+    - 上下文对象（this）到底是谁？<br>
+    - 1.当以调用对象的方法的形式执行时：this就是调用方法的对象。<br>
+    - 2.当以函数的形式调用时：this永远都是window<br></p>
+<p>这么理解当然没错，但是学完之后总感觉懂了，又感觉模模糊糊，后来通过进一步的学习，理解了要是想明白this，首先得了解
+JS的注册机制.</p><br>
+ <p><span style="color: chartreuse">执行上下文</span>，也可以叫做执行上下文环境，本质上是一个对象，是由JS引擎自动帮我们创建的。执行上下文相较于一般对象
+ 来说有点特殊，它对于我们是透明的，我们只可以直接使用它的属性。</p>
+<p>执行上下文既然是由JS引擎生成的，那是什么时候又是如何产生的呢？</p>
+<p>实际上JS引擎在执行全局代码之前会先进行一部分准备工作：</p>
+<ul>
+    <li>1. 将Global对象(window)作为全局上下文对象</li>
+    <li>2. 将一些变量进行初始化赋值（变量提升）</li>
+    <li>3. 将它们设置为上下文对象(window)的属性</li>
+</ul>
+<p>与此对应的，js引擎在执行函数体之前也会先做些"准备工作"：</p>
+<ul>
+    <li>1. 创建函数上下文对象</li>
+    <li>2. 将一些变量进行初始化赋值</li>
+    <li>3. 将它们设置为上下文对象的属性</li>
+</ul>
+<p>这里插一段 <span style="color: yellowgreen;">变量提升</span> 。</p>
+<pre><code>
+//1. 可以在定义变量之前引用变量, 其值为undefined
+console.log(b); //undefined -->此时变量b已经存在
+var b = 2;
+
+//2. 可以在任何位置引用this
+console.log(this); //window
+
+//3. 可以在函数声明之前调用函数 -->称为'函数提升'
+console.log(fun); //fun函数定义
+fun(); //可以执行
+function fun () {
+alert('fun()');
+}
+
+console.log(fun2); //undefined
+fun2(); // Uncaught TypeError: fun2 is not a function
+var fun2 = function () {
+alert('fun2()');
+}
+</code></pre>
+<p>简单点就是var与function提前注册变量，但是不赋值，函数内部变量不加var升为全局变量，与语句的先后顺序关系不大</p>
+<br> <br><br>
+<p>接着回到上下文对象，全局上下文与函数上下文都是在代码执行之前生成，其中就包括了this的赋值。</p>
+<br>
+<h3> 本质上任何函数在执行时都是通过某个对象调用的，this就代表调用函数的当前对象.在定义函数时, this还没有确定, 只有在执行时才确定.
+    当调用函数时没有明确指定当前对象，this就是全局对象window。</h3>
+<p>这样就造成了当以调用对象的方法的形式执行时：this就是调用方法的对象。当以函数的形式调用时：this永远都是window这样的表现形式。</p>
+<p>另外，在js代码执行过程中, JS引擎会用一个栈结构容器来管理所有创建的上下文对象，在函数执行完之后将对应的上下文对象从栈中移除</p>
+
+<p>当然，call，apply，bind三种方法都可以强制改变this对象。</p>
+
+<p style="font-size: 40px;color: aqua">以上,回家</p>
+
+<div id="biy" style="width: 446.8px;height: 340px;background: url('imgs/bicyle.png') no-repeat;position: relative;"></div>
+
+<script>
+    var biy=document.getElementById('biy');
+    var posi=['0 0','-446.8px 0','-893.6px 0','-1340.4px 0','-1787.2px 0','-2234px 0','-2680.8px 0','-3127.6px 0','-3574.4px 0','-4021.2px 0'];
+
+    function dong(){
+        var index = 0;
+        var left1=-1000;
+        function d(){
+            if (index>=posi.length) {
+                index=0;
+            }else{
+                index++;
+            }
+        var biyLeft=parseInt(biy.style.left);
+            if (biyLeft<(-448)) {
+                left1=-1000;
+            }
+        biy.style.left=-left1+'px';
+        left1+=10;
+        biy.style.backgroundPosition=posi[index];
+        }
+        setInterval(d,40);
+    }
+    dong();
+
+</script>
+</body>
