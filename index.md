@@ -12,7 +12,7 @@ layout: default
       <div id="particles-js"></div>
     </div>
 
-    <div class="ggsearch" style="width:400px">
+    <div class="ggsearch">
     <script>
     (function() {
       var cx = '011129276970645859851:stqb9cghxz8';
