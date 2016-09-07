@@ -217,7 +217,7 @@ a.external:hover {
     width: 85%;
   }
 }
-#nav-list{
+.nav-lists{
     border:1px solid black;
         position: fixed;
         right: 15%;
