@@ -476,11 +476,11 @@ a.external:hover {
   background-size: 20%;
   background-position: 50% 50%;
   background: #38658c;
-  background: -webkit-radial-gradient(top left, #5d3571, #38658c);
-  background: -moz-radial-gradient(top left, #5d3571, #38658c);
+  background: -webkit-radial-gradient(top left, #ba2636,#55295b);
+  background: -moz-radial-gradient(top left, #ba2636,#55295b);
   background: -o-radial-gradient(top left, #5d3571, #38658c);
-  background: -ms-radial-gradient(top left, #5d3571, #38658c);
-  background: radial-gradient(to bottom right, #5d3571, #38658c);
+  background: -ms-radial-gradient(top left, #ba2636,#55295b);
+  background: radial-gradient(to bottom right, #ba2636,#55295b);
 }
 #disqus_container {
   font-size: 12px;
