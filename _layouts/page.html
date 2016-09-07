@@ -2,13 +2,6 @@
 layout:           default
 ---
 
-<div class='category'>
-	<ul>
-		{% for cat in site.categories %}
-			<li><a href="{{ site.BASE_PATH }}/category.html#{{ cat[0] }}">{{ cat[0] }}<span>{{ cat[1].size }}</span></a></li>
-		{% endfor %}
-	</ul>
-</div>
 
 <div id="content">
     {{ content }}
