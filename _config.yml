@@ -3,6 +3,8 @@ permalink: /:title
 title: madaono
 url: http://sharethetime.win
 feed: /atom.xml
+paginate: 8
+paginate_path: "page:num" 
 author_info: <a href="http://sharethetime.win">madaono</a>
 
 
