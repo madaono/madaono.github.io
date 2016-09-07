@@ -37,17 +37,7 @@ layout: default
         {% endfor %}
       </ul>
     </div>
-    <div class="nav-lists">
-    <h4>Category</h4>
-    <ul>
-      {% for category in site.categories %}
-      <li><a href="/categories/{{ category | first }}/" title="view all
-      posts">{{ category | first }} {{ category | last | size }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    </div>
-  </div>
+</div>
   
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

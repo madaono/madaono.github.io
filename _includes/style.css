@@ -217,12 +217,6 @@ a.external:hover {
     width: 85%;
   }
 }
-.nav-lists{
-    border:1px solid black;
-        position: fixed;
-        right: 15%;
-        top:10%;
-}
 .ggsearch{
 	width: 400px;
 	position: relative;
