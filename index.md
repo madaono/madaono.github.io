@@ -30,7 +30,6 @@ layout: default
     <div class="index-content">
       <ul class="artical-list">
         {% for post in site.categories.blog %}
-        {% for post in site.categories.js %}
         <li>
           <a href="{{ post.url }}" class="title">{{ post.title }}</a>
           <div class="title-desc">{{ post.description }}</div>
@@ -38,6 +37,7 @@ layout: default
         {% endfor %}
       </ul>
     </div>
+    <div class="nav-lists">
     <h4>Category</h4>
     <ul>
       {% for category in site.categories %}
@@ -46,6 +46,7 @@ layout: default
       </li>
       {% endfor %}
     </ul>
+    </div>
   </div>
   
   <script>
