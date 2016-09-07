@@ -217,6 +217,16 @@ a.external:hover {
     width: 85%;
   }
 }
+@media screen and (max-width: 767px){
+	.ggsearch{
+		width: 100%
+	}
+}
+.ggsearch{
+	width: 400px;
+	position: relative;
+	right:800px;
+}
 .index-wrapper .artical-list li {
   margin-bottom: 70px;
 }
