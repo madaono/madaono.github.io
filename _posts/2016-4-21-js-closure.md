@@ -3,7 +3,6 @@ layout: post
 title: JS中的闭包
 description: 闭包如风，常伴吾身
 category: blog
-tags:[javascript]
 ---
 
 
