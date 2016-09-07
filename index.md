@@ -3,20 +3,6 @@ layout: default
 ---
 
 <body>
-  <div>
-  <script>
-  (function() {
-    var cx = '011129276970645859851:stqb9cghxz8';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-  })();
-  </script>
-  <gcse:search></gcse:search>
-  </div>
   <div class="index-wrapper">
     <div class="aside">
       <div class="info-card">
@@ -26,6 +12,20 @@ layout: default
       <div id="particles-js"></div>
     </div>
 
+    <div>
+    <script>
+    (function() {
+      var cx = '011129276970645859851:stqb9cghxz8';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <gcse:search></gcse:search>
+    </div>
 
     <div class="index-content">
       <ul class="artical-list">
