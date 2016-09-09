@@ -119,8 +119,8 @@ tags: [javascript,animation]
     for(var i=0;i<60;i++)
     {
         sCss+="#wrap ul li:nth-of-type("+(i+1)+"){ -webkit-transform:rotate("+i*6+"deg);}";
-        if (((i+1)/5)%3===0){
-            aLi+="<li>"+"<span>"+(i+1)/5+"</span>"+"</li>";
+         if (i>0&&(i/5)%3===0){
+            aLi+="<li>"+"<span>"+i/5+"</span>"+"</li>";
         }else{
             aLi+="<li></li>";
         }
