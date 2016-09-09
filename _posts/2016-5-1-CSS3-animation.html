@@ -1,5 +1,5 @@
 ---
-layout:     animation-post
+layout:     post
 title:      CSS3-2D动画
 category: blog
 description: 2D知识点梳理
@@ -105,7 +105,9 @@ tags: [javascript,animation]
     <div id="sec"></div>
     <div class="ico"></div>
 </div>
-
+<style id="css">
+    .transLis li{margin-bottom:50px}.box1{width:50px;height:50px;background-color:orangered;transition-property:width}.box1:hover{width:100px;height:50px;background-color:aqua}.box2{transition-duration:5s}.box3{transition-delay:2s}.box4{transition-timing-function:cubic-bezier(0,.59,1,-0.06)}.box4:hover{width:266px}.transBg li div{background:url("imgs/sandaoliu.jpg") 100%;margin:0 auto}.trans2d{height:100px;width:100px}.transDiv1{transform:rotate(120deg)}.transDiv2{transform:skew(10deg,20deg)}.transDiv3{transform:scale(1.6)}.transDiv4:hover{transform:translate(60px,50px)}.transDiv5{transform-origin:0 50px;transition:5s}.transDiv5:hover{transform:rotate(360deg) scale(0.2)}#wrap{width:200px;height:200px;border:2px solid #000;margin:100px auto;border-radius:50%;position:relative}#wrap ul{list-style:none}#wrap ul li{width:2px;height:6px;background:#000;position:absolute;left:99px;top:0;-webkit-transform-origin:center 100px}#wrap ul li:nth-of-type(5n+1){height:12px}#wrap ul li span{position:absolute;bottom:-22px;left:-4px;color:rebeccapurple}#hour{width:6px;height:45px;background:#000;position:absolute;left:97px;top:55px;-webkit-transform-origin:bottom}#min{width:4px;height:65px;background:#999;position:absolute;left:98px;top:35px;-webkit-transform-origin:bottom}#sec{width:2px;height:80px;background:red;position:absolute;left:99px;top:20px;-webkit-transform-origin:bottom}.ico{width:20px;height:20px;background:#000;border-radius:50%;position:absolute;left:90px;top:90px}
+</style>
 
 
 <script>
