@@ -1,0 +1,152 @@
+---
+layout:     post
+title:      CSS3-2D动画
+category: blog
+description: 2D知识点梳理
+tags: [javascript,animation]
+---
+
+
+<h3>基本CSS3动画（1）2d部分</h3>
+<h5>①过渡属性：transition</h5>
+<ul class="transLis">
+    <li>transition-property:当指定的 CSS 属性改变时，过渡效果将开始,值可以是none|all|具体属性(多个以，分离)三种，一般是搭配hover伪类使用。
+        例如class=box1的小方块<div class="box1">
+            <pre><code>
+              .box1{width: 50px;height: 50px;background-color:orangered;transition-property: width;}
+              .box1:hover{width: 100px;height: 50px;background-color: aqua;}
+            </code></pre>
+        </div>
+    </li>
+    <li>
+        transition-duration：设置完成动画的时间（注：默认为0，也就是没动画）依旧是上面的小方块：
+        <div class="box1 box2"></div>
+    </li>
+    <li>
+        transition-delay: 设置动画开始延时，几秒后开始过渡,这里设置2s:
+        <div class="box1 box2 box3"></div>
+    </li>
+    <li>
+        transition-timing-function:规定过渡效果的速度曲线,就是可以让动画不匀速变化。可设置选项有linear|ease|ease-in|ease-out|ease-in-out|cubic-
+        bezier(n,n,n,n)，对应着不同的速度效果，其中常用的还是cubic-bezier(n,n,n,n)，可以自定义速度变化，至于怎么
+        设置没必要自己想，可以登录 <a href="http://cubic-bezier.com/">cubic-bezier网站去自己图像化的去生成</a>。
+        这里取一个（0,.59,1,-0.06）看看(快慢快)。
+        <div class="box1 box2 box4"></div>
+    </li>
+</ul>
+<p>transition也是一个简写属性，可以设置以上四个属性，但是要注意要设置transition-duration,不然默认为0，不会产生动画。语法：transition: property duration timing-function delay;</p>
+<p>tips:transition也可以给多个样式属性分别设置效果例如transition: width 2s linear, height 3s ease 2s, background-color 2s;</p>
+<br> <br><br><br>
+<h5>②transform(2d变换)</h5>
+<ul class="transLis transBg">
+    <li>
+        2d旋转rotate(angle)，angle只能设单值。正数表示顺时针旋转，负数表示逆时针旋转。例如120deg:
+        <br> <br>
+        <div class="trans2d transDiv1"></div>
+    </li>
+    <li>
+        斜切skew(x-angle,y-angle):定义沿着 X 和 Y 轴的 2D 倾斜转换,参数值以deg为单位 第一个参数代表与y轴之间的角度
+        第二个参数代表与x轴之间的角度.
+        <br>
+        正值:正斜杠方向;
+        负值:反斜杠方向
+        <br>
+        单值时表示只X轴扭曲，Y轴不变，如transform: skew(30deg);等价于transform: skew(30deg, 0);
+        考虑到可读性，不推荐用单值，应该用transform: skewX(30deg);。skewY表示只Y轴扭曲，X轴不变。
+        skew(10deg,20deg)时：
+        <br><br>
+        <div class="trans2d transDiv2"></div>
+    </li>
+    <li>
+        缩放transform:scale（num）:同样可以设单值和双值。单值时表示X轴和Y轴等值缩放。默认值为1，要缩小请设0.01～0.99之间的值，
+        要放大请设超过1的值。也可以单独设置X/Y轴缩放scaleX()/scaleY()
+        <br>
+        这里需要注意的是scale可以设置负值，负数会先将元素反转再缩放，原理就是XY轴像素矩阵各值取反后，效果等价于反转。当然你同样可以用rotate实现反转。
+        设置一个scale(1.6)
+        <br><br>
+        <div class="trans2d transDiv3"></div>
+    </li>
+    <li>位移transform:translate(60px,50px);控制轴的位置，也可以单纯设置X/Y轴。translateX(100px)；translateY(200px)
+        正值:往左/往下
+        负值:往右/往上
+        可设单值，也可设双值。正数表示XY轴正向位移，负数为反向位移。设单值表示只X轴位移，Y轴坐标不变，
+        例如transform: translate(100px);等价于transform: translate(100px,0);
+        例如translate(60px,50px)
+        <br><br>
+        <div class="trans2d transDiv4"></div>
+    </li>
+    <li>变换基点
+        transform-origin:right bottom;
+        transform-origin:200px 200px;(参照左上角,0 0就是左上角);
+        单独设置这个属性没有意义，必须搭配其他变换属性才能使用，定义了其他动画的基点。
+        <br>
+        例如：
+        <pre>
+            <code>
+        .transDiv5{
+            transform-origin:0 50px;
+            transition:5s;
+        }
+        .transDiv5:hover{
+            transform:rotate(360deg) scale(0.2);
+        }
+            </code>
+        </pre>
+        <div class="trans2d transDiv5"></div>
+    </li>
+</ul>
+<p>综合运用画了个表，详情右键查看源码：</p>
+
+<div id="wrap">
+    <ul id="list">
+    </ul>
+    <div id="hour"></div>
+    <div id="min"></div>
+    <div id="sec"></div>
+    <div class="ico"></div>
+</div>
+
+
+<script>
+    var oCss=document.querySelector('head');
+    var css='<style id="css">.transLis li{margin-bottom:50px;.box1{width: 50px;height: 50px;background-color:orangered;transition-property: width;}.box1:hover{width: 100px;height: 50px;background-color: aqua;}.box2{transition-duration: 5s;}.box3{transition-delay: 2s;}.box4{transition-timing-function: cubic-bezier(0,.59,1,-0.06);.box4:hover{width: 266px;}.transBg li div{background: url("imgs/sandaoliu.jpg") 100%;margin: 0 auto;}.trans2d{height: 100px;width: 100px;.transDiv1{transform:rotate(120deg);}.transDiv2{transform:skew(10deg,20deg);}.transDiv3{transform:scale(1.6);}.transDiv4:hovertransform: translate(60px,50px)}.transDiv5{transform-origin:0 50px;transition:5s;.transDiv5:hover{transform:rotate(360deg) scale(0.2);/*钟表样式*/#wrap{width:200px;height:200px;border:2px solid #000; margin:100px auto; border-radius:50%; position:relative;}#wrap ul{list-style:none;}#wrap ul li{ width:2px;height:6px;background:#000; position:absolute;left:99px;top:0; -webkit-transform-origin:center 100px;}#wrap ul li:nth-of-type(5n+1){ height:12px;}#wrap ul li span{position: absolute;bottom:-22px;left:-4px;color: rebeccapurple}#hour{width:6px;height:45px;background:#000; position:absolute;left:97px;top:55px;-webkit-transform-origin:bottom;}#min{width:4px;height:65px;background:#999; position:absolute;left:98px;top:35px;-webkit-transform-origin:bottom;}#sec{width:2px;height:80px;background:red; position:absolute;left:99px;top:20px;-webkit-transform-origin:bottom;}.ico{width:20px;height:20px;background:#000; border-radius:50%; position:absolute;left:90px;top:90px;}</style>'
+    oCss.innerText+=css;
+</script>
+<script>
+    var oList=document.getElementById("list");
+    var oCss=document.querySelector("head");
+    var aLi="";
+    var sCss="";
+    //生成表盘
+    for(var i=0;i<60;i++)
+    {
+        sCss+="#wrap ul li:nth-of-type("+(i+1)+"){ -webkit-transform:rotate("+i*6+"deg);}";
+        if (((i+1)/5)%3===0){
+            aLi+="<li>"+"<span>"+(i+1)/5+"</span>"+"</li>";
+        }else{
+            aLi+="<li></li>";
+        }
+    }
+    oList.innerHTML=aLi;
+    oCss.innerHTML+=sCss;
+
+    //表针
+    var oHour=document.getElementById("hour");
+    var oMin=document.getElementById("min");
+    var oSec=document.getElementById("sec");
+    toTime();
+    setInterval(toTime,1000);
+    function toTime()
+    {
+        var oDate=new Date();
+//实时更新指针角度
+        var iSec=oDate.getSeconds();
+        var iMin=oDate.getMinutes()+iSec/60;
+        var iHour=oDate.getHours()+iMin/60;
+        oSec.style.WebkitTransform="rotate("+iSec*6+"deg)";
+        oMin.style.WebkitTransform="rotate("+iMin*6+"deg)";
+        oHour.style.WebkitTransform="rotate("+iHour*30+"deg)";
+    }
+</script>
+
+
