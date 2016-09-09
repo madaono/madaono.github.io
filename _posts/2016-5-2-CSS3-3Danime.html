@@ -1,0 +1,215 @@
+---
+layout:     post
+title:      CSS3-3D动画
+category: blog
+description: 3D知识点梳理
+tags: [javascript,animation]
+---
+
+
+<head>
+    <style type="text/css">
+        #css3D{  -webkit-transform-style: preserve-3d;  -moz-transform-style: preserve-3d;  -ms-transform-style: preserve-3d;  transform-style: preserve-3d;  perspective:200px;
+        }
+/*translateZ*/
+        .box{width:200px;height:200px;border:3px solid #000;margin:30px auto; -webkit-transform-style:preserve-3d;-webkit-perspective:200px;}
+        .div{width:100px;height:100px;background:#bfa; transition:2s;}
+        .box:hover .div{-webkit-transform:translateZ(-100px);}
+
+/*rotate*/
+        .boxR{width: 300px;height: 300px;border: 3px solid red;margin:0 auto;}
+        .box1{width:100px;height:100px;  background:greenyellow;  margin:100px auto 0;  transition:2s;  }
+        .box1:hover{transform:rotate3d(1,0,.5,360deg);}
+
+/*scale*/
+        .boxS{width: 200px;height: 200px;border: 3px solid yellow;margin: 0 auto;}
+        .box2{width: 150px;height: 150px;background: dodgerblue; margin:25px auto; transition: 2s;}
+        .box2:hover{transform: scale3d(.5,1,1.5);}
+
+/*骰子*/
+        .wrapper{perspective: 600px;width: 100px;height: 100px;padding: 200px;border: 3px solid #000000;margin: 0 auto;perspective-origin:50%;  }
+        .touZi{transform-style: preserve-3d;position: relative;transition: 4s;height: 100px;transform-origin: center center -50px;  }
+        .touZi div{width: 100px;height: 100px;border: 1px solid #000;text-align: center;line-height: 100px;color: white;font-size: 60px;position: absolute;}
+        .touZi div:nth-of-type(1){top: -100px;background: yellowgreen;transform-origin: bottom;transform: rotateX(90deg);}
+        .touZi div:nth-of-type(2){left: -100px;background: burlywood;transform-origin: right;transform: rotateY(-90deg);}
+        .touZi div:nth-of-type(3){background: coral;}
+        .touZi div:nth-of-type(4){top: 100px;background: pink;transform-origin: top;transform: rotateX(-90deg);}
+        .touZi div:nth-of-type(5){left: 100px;background: aqua;transform-origin: left;transform: rotateY(90deg);}
+        .touZi div:nth-of-type(6){background: grey;transform: rotateX(180deg) translateZ(100px);}
+        .wrapper:hover .touZi{transform: rotateX(360deg) rotateY(360deg);}
+        .btn{width: 150px;height: 40px;background: linear-gradient(#0598dc,#fab);display: block;margin:26px auto;font:16px '华文彩云';}
+
+    </style>
+</head>
+<body id="css3D">
+<h3>CSS3-3d动画</h3>
+<p>目前CSS3的动画还存在较多的兼容性问题，用之前最好查游览器的支持情况</p>
+<h5>transform-style</h5>
+transform-style：这个属性比较简单只有两个值flat和preserve-3d。用于指定舞台为2D或3D，
+<br>默认值flat表示2D舞台，所有子元素2D层面展现。
+<br>preserve-3d看名字就知道了表示3D舞台，所有子元素在3D层面展现。
+<br>注意，在变形元素自身上指定该属性是没有用的，它用于指定舞台，所以要在变形元素的父元素上设置该属性。
+设定后，所有子元素共享该舞台。
+<br>
+<h5>perspective</h5>
+<p>perspective
+    指定3D的视距。默认值是none表示无3D效果，即2D扁平化。
+    实现3D的关键就是要有perspective视距
+    perspective()函数指定只针对当前变形元素，需要和transform其他函数一起使用，仅表示当前变形元素的视距。
+    后者perspective属性指定用于3D舞台，即3D舞台的视距，里面的子元素共享这个视距.<br>
+    还有一个搭配属性是perspective-origin，他的
+    基点默认值是50% 50%即center，表示视距基点在中心点不进行任何位移。
+    注意该属性同样应该定义在父元素上，适用于整个3D舞台。
+    <br>
+    说简单点，这两个属性就是确定了你站在哪里去看，着眼点在哪。
+</p>
+<h5>backface-visibility</h5>
+<p>backface-visibility:用于是否可以看见3D舞台背面，默认值visible表示背面可见，可以设成hidden让背面不可见。
+    通常当旋转时，如果不希望背面显示出来，该属性就很有用，设成hidden即可。</p>
+
+<h5>图形变化</h5>
+<h6>translate3d位移</h6>
+<p>与2D的一样，只是多了个Z轴，以translateZ(-100px)为例。Z轴的值越大表示离眼睛越近，元素就越大，但当值大于perspective视距时元素将消失，
+    因为眼睛无法看见眼睛背后的东西,值越小表示离眼睛越远，元素就越小（这里的perspective:200px）</p>
+
+<div class="box">
+    <div class="div"></div>
+</div>
+<br>
+<p>类似的还有scale3d缩放，rotate3d旋转，注意skew扭曲是没有3D的。</p>
+<br>
+<h6>scale3d缩放</h6>
+<p>scale3d(sx,sy,sz)，其中sz为Z轴的缩放比例，取值同sx，sy一样，在0.01～0.99时元素缩小，1时大小不变，大于1时元素变大</p>
+<p>例：transform: scale3d(.5,1,1.5)</p>
+<div class="boxS">
+    <div class="box2"></div>
+</div>
+
+<br>
+<h6>rotate3d旋转</h6>
+<p>rotate3d(x,y,z,a)这里多了一个参数angle表示3D舞台上旋转的角度，而xyz的取值为0～1为各轴的旋转矢量值.</p>
+<p>例：transform:rotate3d(1,0,1,360deg)</p>
+<div class="boxR">
+    <div class="box1"></div>
+</div>
+
+<h5>随机骰子动画</h5>
+<div class="wrapper">
+    <div class="touZi">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+</div>
+<button class="btn">点击掷骰子</button>
+
+
+<p>代码：</p>
+<p>说明：未点击掷骰子之前，鼠标移入框内会固定X轴转180度，Y轴转60度（rotateX(180deg) rotateY(60deg)），点击
+之后，JS生成内联样式，则优先级大于之前的样式，所以固定转动样式会失效，再次移入投资不会再转动。
+</p>
+<p>CSS代码：</p>
+<pre>
+    <code>
+    .wrapper{
+            perspective: 600px;
+            width: 100px;
+            height: 100px;
+            padding: 200px;
+            border: 3px solid #000000;
+            margin: 0 auto;
+            perspective-origin:90%;
+        }
+        .touZi{
+            transform-style: preserve-3d;
+            position: relative;
+            transition: 4s;
+            height: 100px;
+            transform-origin: center center -50px;
+        }
+        .touZi div{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 100px;
+            color: white;
+            font-size: 60px;
+            position: absolute;
+        }
+        .touZi div:nth-of-type(1){
+            top: -100px;
+            background: pink;
+            transform-origin: bottom;
+            transform: rotateX(90deg);
+        }
+        .touZi div:nth-of-type(2){
+            left: -100px;
+            background: pink;
+            transform-origin: right;
+            transform: rotateY(-90deg);
+        }
+        .touZi div:nth-of-type(3){
+            background: pink;
+        }
+        .touZi div:nth-of-type(4){
+            top: 100px;
+            background: pink;
+            transform-origin: top;
+            transform: rotateX(-90deg);
+        }
+        .touZi div:nth-of-type(5){
+            left: 100px;
+            background: pink;
+            transform-origin: left;
+            transform: rotateY(90deg);
+        }
+        .touZi div:nth-of-type(6){
+            background: gray;
+            transform: rotateX(180deg) translateZ(100px);
+        }
+
+        .wrapper:hover .touZi{
+            transform: rotateX(180deg) rotateY(60deg);
+        }
+    </code>
+</pre>
+<br>
+<p>HTML代码：</p>
+<pre>
+    <code>
+        <div class="wrapper">
+            <div class="touZi">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+            </div>
+        </div>
+        <button class="btn">点击掷骰子</button>
+    </code>
+</pre>
+<br>
+<p>JS代码：</p>
+<pre>
+    <code>
+    var touZi=document.querySelector('.touZi');
+    var btn=document.querySelector('.btn');
+    btn.addEventListener('click',function () {
+        touZi.style.transform="rotateX("+Math.random()*1440+"deg)"+" "+"rotateY("+Math.random()*1440+"deg)";
+    });
+    </code>
+</pre>
+<script type="text/javascript">
+    var touZi=document.querySelector('.touZi');
+    var btn=document.querySelector('.btn');
+    btn.addEventListener('click',function () {
+        touZi.style.transform="rotateX("+Math.random()*1440+"deg)"+" "+"rotateY("+Math.random()*1440+"deg)";
+    });
+</script>
+</body>
