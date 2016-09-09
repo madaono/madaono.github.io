@@ -142,20 +142,20 @@ transform-style：这个属性比较简单只有两个值flat和preserve-3d。�
     </code>
 </pre>
 <br>
-<p>HTML代码：</p>
+<p>HTML结构（用了pre跟code标签HTML还是解析了出来，所以删一半尖括号）：</p>
 <pre>
 <code>
-        <!--<div class="wrapper">
-            <div class="touZi">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
+        div class="wrapper">
+            div class="touZi">
+                div>1</div>
+                div>2</div>
+                div>3</div>
+                div>4</div>
+                div>5</div>
+                div>6</div>
             </div>
-        </div>
-        <button class="btn">点击掷骰子</button>-->
+        /div>
+        button class="btn">点击掷骰子</button>
 </code>
 </pre>
 <br>
@@ -169,11 +169,10 @@ transform-style：这个属性比较简单只有两个值flat和preserve-3d。�
     });
     </code>
 </pre>
-<script>
-	var head=document.getElementById("css");
-	var css1='body{  -webkit-transform-style: preserve-3d;  -moz-transform-style: preserve-3d;  -ms-transform-style: preserve-3d;  transform-style: preserve-3d;  perspective:200px;}/*translateZ*/.box{width:200px;height:200px;border:3px solid #000;margin:30px auto; -webkit-transform-style:preserve-3d;-webkit-perspective:200px;}.div{width:100px;height:100px;background:#bfa; transition:2s;}.box:hover .div{-webkit-transform:translateZ(-100px);}/*rotate*/.boxR{width: 300px;height: 300px;border: 3px solid red;margin:0 auto;}.box1{width:100px;height:100px;  background:greenyellow;  margin:100px auto 0;  transition:2s;  }.box1:hover{transform:rotate3d(1,0,.5,360deg);}/*scale*/.boxS{width: 200px;height: 200px;border: 3px solid yellow;margin: 0 auto;}.box2{width: 150px;height: 150px;background: dodgerblue; margin:25px auto; transition: 2s;}.box2:hover{transform: scale3d(.5,1,1.5);}/*骰子*/.wrapper{perspective: 600px;width: 100px;height: 100px;padding: 200px;border: 3px solid #000000;margin: 0 auto;perspective-origin:50%;  }.touZi{transform-style: preserve-3d;position: relative;transition: 4s;height: 100px;transform-origin: center center -50px;  }.touZi div{width: 100px;height: 100px;border: 1px solid #000;text-align: center;line-height: 100px;color: white;font-size: 60px;position: absolute;}.touZi div:nth-of-type(1){top: -100px;background: yellowgreen;transform-origin: bottom;transform: rotateX(90deg);}.touZi div:nth-of-type(2){left: -100px;background: burlywood;transform-origin: right;transform: rotateY(-90deg);}.touZi div:nth-of-type(3){background: coral;}.touZi div:nth-of-type(4){top: 100px;background: pink;transform-origin: top;transform: rotateX(-90deg);}.touZi div:nth-of-type(5){left: 100px;background: aqua;transform-origin: left;transform: rotateY(90deg);}.touZi div:nth-of-type(6){background: grey;transform: rotateX(180deg) translateZ(100px);}.wrapper:hover .touZi{transform: rotateX(360deg) rotateY(360deg);}.btn{width: 150px;height: 40px;background: linear-gradient(#0598dc,#fab);display: block;margin:26px auto;font:16px "华文彩云";}';
-	head.innerHTML+=css1;
-</script>
+<style>
+	body{  -webkit-transform-style: preserve-3d;  -moz-transform-style: preserve-3d;  -ms-transform-style: preserve-3d;  transform-style: preserve-3d;  perspective:200px;}/*translateZ*/.box{width:200px;height:200px;border:3px solid #000;margin:30px auto; -webkit-transform-style:preserve-3d;-webkit-perspective:200px;}.div{width:100px;height:100px;background:#bfa; transition:2s;}.box:hover .div{-webkit-transform:translateZ(-100px);}/*rotate*/.boxR{width: 300px;height: 300px;border: 3px solid red;margin:0 auto;}.box1{width:100px;height:100px;  background:greenyellow;  margin:100px auto 0;  transition:2s;  }.box1:hover{transform:rotate3d(1,0,.5,360deg);}/*scale*/.boxS{width: 200px;height: 200px;border: 3px solid yellow;margin: 0 auto;}.box2{width: 150px;height: 150px;background: dodgerblue; margin:25px auto; transition: 2s;}.box2:hover{transform: scale3d(.5,1,1.5);}/*骰子*/.wrapper{perspective: 600px;width: 100px;height: 100px;padding: 200px;border: 3px solid #000000;margin: 0 auto;perspective-origin:50%;  }.touZi{transform-style: preserve-3d;position: relative;transition: 4s;height: 100px;transform-origin: center center -50px;  }.touZi div{width: 100px;height: 100px;border: 1px solid #000;text-align: center;line-height: 100px;color: white;font-size: 60px;position: absolute;}.touZi div:nth-of-type(1){top: -100px;background: yellowgreen;transform-origin: bottom;transform: rotateX(90deg);}.touZi div:nth-of-type(2){left: -100px;background: burlywood;transform-origin: right;transform: rotateY(-90deg);}.touZi div:nth-of-type(3){background: coral;}.touZi div:nth-of-type(4){top: 100px;background: pink;transform-origin: top;transform: rotateX(-90deg);}.touZi div:nth-of-type(5){left: 100px;background: aqua;transform-origin: left;transform: rotateY(90deg);}.touZi div:nth-of-type(6){background: grey;transform: rotateX(180deg) translateZ(100px);}.wrapper:hover .touZi{transform: rotateX(360deg) rotateY(360deg);}.btn{width: 150px;height: 40px;background: linear-gradient(#0598dc,#fab);display: block;margin:26px auto;font:16px "华文彩云";}';
+
+</style>
 <script type="text/javascript">
     var touZi=document.querySelector('.touZi');
     var btn=document.querySelector('.btn');
