@@ -201,7 +201,7 @@ a:hover {
 
 a.external {
   padding-right: 13px;
-  background: url('/imgs/icons.gif') no-repeat right 1px;
+  background: url(http://i1.piimg.com/4851/5fe835cdec55a51e.gif) no-repeat right 1px;
 }
 
 a.external:hover {
@@ -398,11 +398,11 @@ pre ol {
 }
 
 .coding .aside {
-  background-image: url(madaono.github.io/imgs/fanglongmao.gif);
+  background-image: url(http://i1.piimg.com/4851/50dad941187bff9e.gif);
 }
 
 .life .aside {
-  background-image: url(madaono.github.io/imgs/ye.gif);
+  background-image: url(http://i1.piimg.com/4851/fd4579cdc559deda.gif);
 }
 
 .index-content .section {
