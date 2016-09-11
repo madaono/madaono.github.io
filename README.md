@@ -1,4 +1,4 @@
-# [My Personal Blog](sharethetime.win)
+# [My Personal Blog](http://sharethetime.win)
 
 - 感谢 [BeiYuu](https://github.com/beiyuu)
 
